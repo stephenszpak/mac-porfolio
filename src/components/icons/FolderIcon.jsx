@@ -1,4 +1,3 @@
-import React from 'react'
 
 export default function FolderIcon({ title = 'Folder', ...props }) {
   return (
@@ -21,13 +20,9 @@ export default function FolderIcon({ title = 'Folder', ...props }) {
           <stop offset="100%" stopColor="#2f7bf6" />
         </linearGradient>
       </defs>
-      {/* Tab */}
       <path d="M10 18a6 6 0 0 1 6-6h10l4 4h18a6 6 0 0 1 6 6v2H10v-6z" fill="url(#folderTop)" />
-      {/* Body */}
       <rect x="8" y="20" width="48" height="32" rx="6" fill="url(#folderBody)" />
-      {/* Subtle inner border */}
       <rect x="8" y="20" width="48" height="32" rx="6" fill="none" stroke="#000" opacity="0.08" />
     </svg>
   )
 }
-

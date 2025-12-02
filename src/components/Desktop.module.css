@@ -3,34 +3,25 @@
   height: 100%;
   width: 100%;
   overflow: hidden;
-  /* Plain wallpaper only (no overlay gradients) */
-  background: url('../images/background-nice.png');
+  background: url('../images/background-two.png');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
 }
 
-/* Using background image only; no separate wallpaper layer */
 
 .wallpaperOverlay {
   position: absolute;
   inset: 0;
-  display: grid; /* used for stacking context only */
-  pointer-events: none; /* overlay is decorative */
+  display: grid;
+  pointer-events: none;
   z-index: 1;
 }
 
-.logo {
-  color: rgba(255,255,255,0.9);
-  font-weight: 600;
-  letter-spacing: 0.4px;
-  font-size: clamp(18px, 2.4vw, 24px);
-  text-shadow: 0 8px 30px rgba(0,0,0,0.5);
-}
 
 .logoImg {
   position: absolute;
-  top: 50%;
+  top: 35%;
   left: 50%;
   width: clamp(288px, 48vw, 640px);
   height: auto;
@@ -40,21 +31,16 @@
   transition: left 320ms ease, transform 320ms ease, width 240ms ease;
 }
 
-/* Docked state applies only on desktop */
-/* No docked/minimized behavior; logo remains centered */
 
-/* Shift the logo horizontally to the left edge when windows are open (desktop only) */
 @media (min-width: 768px) {
   .logoShiftLeft {
+    top: 40%;
     left: 0;
     transform: translate(0, calc(-50% - 8vh));
-    /* slightly smaller when at the left edge */
     width: clamp(200px, 32vw, 420px);
   }
 }
 
-/* Animations for docking/undocking direction */
-/* Removed animations for logo minimize/restore */
 
 .iconsArea {
   position: absolute;

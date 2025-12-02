@@ -1,4 +1,3 @@
-import React from 'react'
 
 export default function ContactsIcon({ title = 'Contacts', ...props }) {
   return (

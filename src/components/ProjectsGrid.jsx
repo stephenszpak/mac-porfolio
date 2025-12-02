@@ -1,8 +1,7 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import styles from './ProjectsGrid.module.css'
 
-// Eagerly import all images from src/images as URLs
-const imageUrls = import.meta.glob('../images/*', { eager: true, as: 'url' })
+const imageUrls = import.meta.glob('../images/*', { eager: true, import: 'default', query: '?url' })
 
 function resolveImage(basename) {
   const key = Object.keys(imageUrls).find((k) => {

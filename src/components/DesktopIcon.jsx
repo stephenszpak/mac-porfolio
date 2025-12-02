@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './DesktopIcon.module.css'
 
 export default function DesktopIcon({ label, onOpen, icon }) {

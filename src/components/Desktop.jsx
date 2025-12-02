@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './Desktop.module.css'
 import logo from '../images/self-logo.png'
 import DesktopIcon from './DesktopIcon.jsx'

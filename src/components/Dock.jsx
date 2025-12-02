@@ -1,11 +1,9 @@
-import React from 'react'
 import styles from './Dock.module.css'
 import MailIcon from './icons/MailIcon.jsx'
 import ContactsIcon from './icons/ContactsIcon.jsx'
 import FinderIcon from './icons/FinderIcon.jsx'
 import NotesIcon from './icons/NotesIcon.jsx'
-// Try to use a local LinkedIn image if present; fallback to Font Awesome
-const imageUrls = import.meta.glob('../images/*', { eager: true, as: 'url' })
+const imageUrls = import.meta.glob('../images/*', { eager: true, import: 'default', query: '?url' })
 function resolveImage(prefix) {
   const key = Object.keys(imageUrls).find((k) => (k.split('/').pop() || '').toLowerCase().startsWith(prefix))
   return key ? imageUrls[key] : null

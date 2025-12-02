@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import pane from './ProjectsPane.module.css'
 import ProjectsGrid from './ProjectsGrid.jsx'
 
@@ -9,7 +9,6 @@ export default function ProjectsPane({ items }) {
 
   const details = useMemo(() => {
     if (!selected) return null
-    // Content map; expand as more projects are added
     if (selected.name === 'Natural Language Dashboard') {
       return (
         <div className={pane.detailBody}>
@@ -66,11 +65,9 @@ export default function ProjectsPane({ items }) {
 
       <div className={`${pane.track} ${view === 'detail' ? pane.toDetail : pane.toList}`}>
         <div className={pane.slide}>
-          {/* List view */}
           <ProjectsGrid items={items} onSelect={setSelected} />
         </div>
         <div className={pane.slide}>
-          {/* Detail view */}
           <div className={pane.detailWrap}>{details}</div>
         </div>
       </div>

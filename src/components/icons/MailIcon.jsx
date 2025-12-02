@@ -1,7 +1,5 @@
-import React from 'react'
 
 export default function MailIcon({ title = 'Mail', ...props }) {
-  // Scales with font-size of the parent via 1em
   return (
     <svg
       viewBox="0 0 64 64"
@@ -28,4 +26,3 @@ export default function MailIcon({ title = 'Mail', ...props }) {
     </svg>
   )
 }
-

@@ -1,4 +1,3 @@
-import React from 'react'
 
 export default function NotesIcon({ title = 'Notes', ...props }) {
   return (
@@ -24,15 +23,11 @@ export default function NotesIcon({ title = 'Notes', ...props }) {
           <rect x="4" y="4" width="56" height="56" rx="14" />
         </clipPath>
       </defs>
-      {/* Base rounded sheet (white) with subtle border */}
       <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#notesPaper)" stroke="#e5e7eb" strokeWidth="1" />
-      {/* Top yellow band clipped to the rounded shape */}
       <g clipPath="url(#notesClip)">
         <rect x="4" y="4" width="56" height="14" fill="url(#notesTop)" />
       </g>
-      {/* Subtle divider under the band */}
       <path d="M6 18h52" stroke="#000" opacity="0.06" />
-      {/* Faint horizontal lines to suggest notes */}
       <g stroke="#9aa5b1" opacity="0.22" strokeWidth="1">
         <path d="M10 24h44" />
         <path d="M10 30h44" />
