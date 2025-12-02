@@ -1,5 +1,5 @@
 
-export default function ContactsIcon({ title = 'Contacts', ...props }) {
+const ContactsIcon = ({ title = 'Contacts', ...props }) => {
   return (
     <svg
       viewBox="0 0 64 64"
@@ -35,3 +35,5 @@ export default function ContactsIcon({ title = 'Contacts', ...props }) {
     </svg>
   )
 }
+
+export default ContactsIcon

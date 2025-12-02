@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-export default function useDraggable(initialOffset = { x: 0, y: 0 }) {
+const useDraggable = (initialOffset = { x: 0, y: 0 }) => {
   const [offset, setOffset] = useState(() => ({ x: initialOffset.x || 0, y: initialOffset.y || 0 }))
   const [isDragging, setIsDragging] = useState(false)
   const last = useRef({ x: 0, y: 0 })
@@ -15,7 +15,7 @@ export default function useDraggable(initialOffset = { x: 0, y: 0 }) {
   }, [])
 
   useEffect(() => {
-    function onPointerMove(e) {
+    const onPointerMove = (e) => {
       if (!isDragging) return
       if (pointerId.current !== null && e.pointerId !== pointerId.current) return
       const dx = e.clientX - last.current.x
@@ -23,7 +23,7 @@ export default function useDraggable(initialOffset = { x: 0, y: 0 }) {
       last.current = { x: e.clientX, y: e.clientY }
       setOffset((o) => ({ x: o.x + dx, y: o.y + dy }))
     }
-    function onPointerUp(e) {
+    const onPointerUp = (e) => {
       if (pointerId.current !== null && e.pointerId !== pointerId.current) return
       pointerId.current = null
       setIsDragging(false)
@@ -42,3 +42,5 @@ export default function useDraggable(initialOffset = { x: 0, y: 0 }) {
 
   return { offset, isDragging, onPointerDown, onMouseDown }
 }
+
+export default useDraggable

@@ -3,7 +3,7 @@ import logo from '../images/self-logo.png'
 import DesktopIcon from './DesktopIcon.jsx'
 import FolderIcon from './icons/FolderIcon.jsx'
 
-export default function Desktop({ onOpenResume, onOpenProjects, logoShifted = false }) {
+const Desktop = ({ onOpenResume, onOpenProjects, logoShifted = false }) => {
   return (
     <div className={styles.desktop}>
       <div className={styles.wallpaperOverlay}>
@@ -17,3 +17,5 @@ export default function Desktop({ onOpenResume, onOpenProjects, logoShifted = fa
     </div>
   )
 }
+
+export default Desktop

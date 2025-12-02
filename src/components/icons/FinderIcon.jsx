@@ -1,5 +1,5 @@
 
-export default function FinderIcon({ title = 'Finder', ...props }) {
+const FinderIcon = ({ title = 'Finder', ...props }) => {
   return (
     <svg
       viewBox="0 0 64 64"
@@ -47,3 +47,5 @@ export default function FinderIcon({ title = 'Finder', ...props }) {
     </svg>
   )
 }
+
+export default FinderIcon

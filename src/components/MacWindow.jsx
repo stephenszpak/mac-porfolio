@@ -1,7 +1,7 @@
 import styles from './MacWindow.module.css'
 import useDraggable from '../hooks/useDraggable.js'
 
-export default function MacWindow({ title = 'Untitled', children, onClose, initialOffset }) {
+const MacWindow = ({ title = 'Untitled', children, onClose, initialOffset }) => {
   const { offset, isDragging, onPointerDown } = useDraggable(initialOffset)
   const handlePointerDown = (e) => {
     if (e.target.closest('button') || e.target.closest('a') || e.target.closest('[data-nodrag]')) return
@@ -25,3 +25,5 @@ export default function MacWindow({ title = 'Untitled', children, onClose, initi
     </div>
   )
 }
+
+export default MacWindow

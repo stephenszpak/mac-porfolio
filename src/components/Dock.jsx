@@ -4,7 +4,7 @@ import ContactsIcon from './icons/ContactsIcon.jsx'
 import FinderIcon from './icons/FinderIcon.jsx'
 import NotesIcon from './icons/NotesIcon.jsx'
 const imageUrls = import.meta.glob('../images/*', { eager: true, import: 'default', query: '?url' })
-function resolveImage(prefix) {
+const resolveImage = (prefix) => {
   const key = Object.keys(imageUrls).find((k) => (k.split('/').pop() || '').toLowerCase().startsWith(prefix))
   return key ? imageUrls[key] : null
 }
@@ -19,7 +19,7 @@ const items = [
   { key: 'github', label: 'GitHub', icon: null },
 ]
 
-export default function Dock({ onOpenBio, onOpenProjects, onOpenContact, onOpenResume }) {
+const Dock = ({ onOpenBio, onOpenProjects, onOpenContact, onOpenResume }) => {
   const handleClick = (key) => {
     if (key === 'bio' && onOpenBio) onOpenBio()
     if (key === 'projects' && onOpenProjects) onOpenProjects()
@@ -66,3 +66,5 @@ export default function Dock({ onOpenBio, onOpenProjects, onOpenContact, onOpenR
     </div>
   )
 }
+
+export default Dock

@@ -1,5 +1,5 @@
 
-export default function NotesIcon({ title = 'Notes', ...props }) {
+const NotesIcon = ({ title = 'Notes', ...props }) => {
   return (
     <svg
       viewBox="0 0 64 64"
@@ -38,3 +38,5 @@ export default function NotesIcon({ title = 'Notes', ...props }) {
     </svg>
   )
 }
+
+export default NotesIcon

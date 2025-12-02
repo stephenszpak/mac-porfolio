@@ -1,6 +1,6 @@
 import styles from './DesktopIcon.module.css'
 
-export default function DesktopIcon({ label, onOpen, icon }) {
+const DesktopIcon = ({ label, onOpen, icon }) => {
   return (
     <button className={styles.icon} onClick={onOpen} title={label}>
       <span className={styles.glyph} aria-hidden>
@@ -10,3 +10,5 @@ export default function DesktopIcon({ label, onOpen, icon }) {
     </button>
   )
 }
+
+export default DesktopIcon

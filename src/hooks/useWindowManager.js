@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 
 const KEYS = ['resume', 'contact', 'bio', 'projects']
 
-export default function useWindowManager() {
+const useWindowManager = () => {
   const [state, setState] = useState(() => ({
     resume: { open: false, pos: null },
     contact: { open: false, pos: null },
@@ -19,13 +19,13 @@ export default function useWindowManager() {
     return arr
   }, [state])
 
-  function randomOffset() {
+  const randomOffset = () => {
     const rx = Math.floor(Math.random() * 480) - 240
     const ry = Math.floor(Math.random() * 360) - 180
     return { x: rx, y: ry }
   }
 
-  function farFromExisting(candidate) {
+  const farFromExisting = (candidate) => {
     const minDist = 140
     for (const o of openOffsets) {
       const dx = candidate.x - o.x
@@ -36,7 +36,7 @@ export default function useWindowManager() {
     return true
   }
 
-  function computeSpawnOffset() {
+  const computeSpawnOffset = () => {
     for (let i = 0; i < 20; i++) {
       const cand = randomOffset()
       if (farFromExisting(cand)) return cand
@@ -45,26 +45,22 @@ export default function useWindowManager() {
     return base
   }
 
-  function openWindow(key) {
+  const openWindow = (key) => {
     setState((prev) => ({
       ...prev,
       [key]: { open: true, pos: computeSpawnOffset() },
     }))
   }
 
-  function closeWindow(key) {
+  const closeWindow = (key) => {
     setState((prev) => ({
       ...prev,
       [key]: { open: false, pos: null },
     }))
   }
 
-  function isOpen(key) {
-    return !!state[key]?.open
-  }
-  function getOffset(key) {
-    return state[key]?.pos || null
-  }
+  const isOpen = (key) => !!state[key]?.open
+  const getOffset = (key) => state[key]?.pos || null
 
   const anyOpen = KEYS.some((k) => state[k].open)
 
@@ -76,3 +72,5 @@ export default function useWindowManager() {
     anyOpen,
   }
 }
+
+export default useWindowManager

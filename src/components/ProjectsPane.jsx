@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import pane from './ProjectsPane.module.css'
 import ProjectsGrid from './ProjectsGrid.jsx'
 
-export default function ProjectsPane({ items }) {
+const ProjectsPane = ({ items }) => {
   const [selected, setSelected] = useState(null)
 
   const view = selected ? 'detail' : 'list'
@@ -74,3 +74,5 @@ export default function ProjectsPane({ items }) {
     </div>
   )
 }
+
+export default ProjectsPane

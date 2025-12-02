@@ -3,7 +3,7 @@ import styles from './ProjectsGrid.module.css'
 
 const imageUrls = import.meta.glob('../images/*', { eager: true, import: 'default', query: '?url' })
 
-function resolveImage(basename) {
+const resolveImage = (basename) => {
   const key = Object.keys(imageUrls).find((k) => {
     const file = k.split('/').pop() || ''
     return file.toLowerCase().startsWith(basename.toLowerCase())
@@ -11,7 +11,7 @@ function resolveImage(basename) {
   return key ? imageUrls[key] : null
 }
 
-export default function ProjectsGrid({ items, onSelect }) {
+const ProjectsGrid = ({ items, onSelect }) => {
   const resolved = useMemo(
     () =>
       items.map((it) => ({
@@ -43,3 +43,5 @@ export default function ProjectsGrid({ items, onSelect }) {
     </div>
   )
 }
+
+export default ProjectsGrid

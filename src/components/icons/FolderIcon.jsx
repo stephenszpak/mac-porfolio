@@ -1,5 +1,5 @@
 
-export default function FolderIcon({ title = 'Folder', ...props }) {
+const FolderIcon = ({ title = 'Folder', ...props }) => {
   return (
     <svg
       viewBox="0 0 64 64"
@@ -26,3 +26,5 @@ export default function FolderIcon({ title = 'Folder', ...props }) {
     </svg>
   )
 }
+
+export default FolderIcon

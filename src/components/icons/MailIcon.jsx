@@ -1,5 +1,5 @@
 
-export default function MailIcon({ title = 'Mail', ...props }) {
+const MailIcon = ({ title = 'Mail', ...props }) => {
   return (
     <svg
       viewBox="0 0 64 64"
@@ -26,3 +26,5 @@ export default function MailIcon({ title = 'Mail', ...props }) {
     </svg>
   )
 }
+
+export default MailIcon

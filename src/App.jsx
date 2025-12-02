@@ -5,7 +5,7 @@ import MacWindow from './components/MacWindow.jsx'
 import ProjectsPane from './components/ProjectsPane.jsx'
 import useWindowManager from './hooks/useWindowManager.js'
 
-export default function App() {
+const App = () => {
   const wm = useWindowManager()
   const handleOpenResume = () => wm.openWindow('resume')
   const handleOpenContact = () => wm.openWindow('contact')
@@ -85,3 +85,5 @@ export default function App() {
     </>
   )
 }
+
+export default App
