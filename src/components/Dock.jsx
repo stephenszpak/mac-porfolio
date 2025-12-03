@@ -3,6 +3,7 @@ import MailIcon from './icons/MailIcon.jsx'
 import ContactsIcon from './icons/ContactsIcon.jsx'
 import FinderIcon from './icons/FinderIcon.jsx'
 import NotesIcon from './icons/NotesIcon.jsx'
+import bugIcon from '../assets/bug-icon.svg'
 const imageUrls = import.meta.glob('../images/*', { eager: true, import: 'default', query: '?url' })
 const resolveImage = (prefix) => {
   const key = Object.keys(imageUrls).find((k) => (k.split('/').pop() || '').toLowerCase().startsWith(prefix))
@@ -15,6 +16,7 @@ const items = [
   { key: 'contact', label: 'Contact', icon: '✉️' },
   { key: 'bio', label: 'Bio', icon: '👤' },
   { key: 'resume', label: 'Resume', icon: '📄' },
+  { key: 'bughunt', label: 'Bug Hunt', icon: null },
   { key: 'linkedin', label: 'LinkedIn', icon: null },
   { key: 'github', label: 'GitHub', icon: null },
 ]
@@ -25,6 +27,10 @@ const Dock = ({ onOpenBio, onOpenProjects, onOpenContact, onOpenResume }) => {
     if (key === 'projects' && onOpenProjects) onOpenProjects()
     if (key === 'contact' && onOpenContact) onOpenContact()
     if (key === 'resume' && onOpenResume) onOpenResume()
+    if (key === 'bughunt') {
+      const evt = new CustomEvent('dock:open-bughunt')
+      window.dispatchEvent(evt)
+    }
     if (key === 'linkedin') {
       window.open('https://linkedin.com/in/stephen-szpak', '_blank', 'noopener,noreferrer')
     }
@@ -51,6 +57,8 @@ const Dock = ({ onOpenBio, onOpenProjects, onOpenContact, onOpenResume }) => {
                 <FinderIcon />
               ) : it.key === 'resume' ? (
                 <NotesIcon />
+              ) : it.key === 'bughunt' ? (
+                <img src={bugIcon} alt="" />
               ) : it.key === 'linkedin' ? (
                 linkedInImg ? <img src={linkedInImg} alt="" /> : <i className="fa-brands fa-linkedin" aria-hidden />
               ) : it.key === 'github' ? (

@@ -1,13 +1,15 @@
 import { useMemo, useState } from 'react'
 
-const KEYS = ['resume', 'contact', 'bio', 'projects']
+const KEYS = ['resume', 'contact', 'bio', 'projects', 'bughunt']
 
 const useWindowManager = () => {
   const [state, setState] = useState(() => ({
-    resume: { open: false, pos: null },
-    contact: { open: false, pos: null },
-    bio: { open: false, pos: null },
-    projects: { open: false, pos: null },
+    resume: { open: false, pos: null, z: 0 },
+    contact: { open: false, pos: null, z: 0 },
+    bio: { open: false, pos: null, z: 0 },
+    projects: { open: false, pos: null, z: 0 },
+    bughunt: { open: false, pos: null, z: 0 },
+    nextZ: 100,
   }))
 
   const openOffsets = useMemo(() => {
@@ -48,27 +50,48 @@ const useWindowManager = () => {
   const openWindow = (key) => {
     setState((prev) => ({
       ...prev,
-      [key]: { open: true, pos: computeSpawnOffset() },
+      [key]: { open: true, pos: computeSpawnOffset(), z: prev.nextZ },
+      nextZ: prev.nextZ + 1,
+    }))
+  }
+
+  const openWindowCentered = (key) => {
+    setState((prev) => ({
+      ...prev,
+      [key]: { open: true, pos: { x: 0, y: 0 }, z: prev.nextZ },
+      nextZ: prev.nextZ + 1,
     }))
   }
 
   const closeWindow = (key) => {
     setState((prev) => ({
       ...prev,
-      [key]: { open: false, pos: null },
+      [key]: { open: false, pos: null, z: prev[key]?.z || 0 },
     }))
   }
 
   const isOpen = (key) => !!state[key]?.open
   const getOffset = (key) => state[key]?.pos || null
+  const getZ = (key) => state[key]?.z || 0
+
+  const focusWindow = (key) => {
+    setState((prev) => ({
+      ...prev,
+      [key]: { ...prev[key], z: prev.nextZ },
+      nextZ: prev.nextZ + 1,
+    }))
+  }
 
   const anyOpen = KEYS.some((k) => state[k].open)
 
   return {
     openWindow,
+    openWindowCentered,
     closeWindow,
     isOpen,
     getOffset,
+    getZ,
+    focusWindow,
     anyOpen,
   }
 }

@@ -7,7 +7,10 @@ const Desktop = ({ onOpenResume, onOpenProjects, logoShifted = false }) => {
   return (
     <div className={styles.desktop}>
       <div className={styles.wallpaperOverlay}>
-        <img className={`${styles.logoImg} ${logoShifted ? styles.logoShiftLeft : ''}`} src={logo} alt="Logo" />
+        <div className={`${styles.logoWrap} ${logoShifted ? styles.logoShiftLeft : ''}`}>
+          <div className={styles.logoAura} />
+          <img className={styles.logoImg} src={logo} alt="Logo" />
+        </div>
       </div>
 
       <div className={styles.iconsArea}>

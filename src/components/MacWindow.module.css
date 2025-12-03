@@ -3,14 +3,18 @@
   top: 50%;
   left: 50%;
   width: min(90vw, 720px);
+  max-height: 80vh;
   background: rgba(255, 255, 255, 0.75);
   color: #111;
   border: 1px solid rgba(0,0,0,0.08);
   border-radius: 12px;
   box-shadow: 0 16px 48px rgba(0,0,0,0.18);
   overflow: hidden;
+  display: grid;
+  grid-template-rows: 36px 1fr;
   backdrop-filter: blur(14px) saturate(130%);
   -webkit-backdrop-filter: blur(14px) saturate(130%);
+  z-index: 10;
 }
 
 .titleBar {
@@ -47,4 +51,9 @@
 }
 .placeholder { width: 48px; }
 
-.content { background: rgba(255,255,255,0.7); }
+.content { background: rgba(255,255,255,0.7); overflow: auto; }
+
+@media (max-width: 767px) {
+  .window { width: calc(100vw - 50px); max-height: calc(100vh - 20vh - 100px); }
+  .titleBar { height: 42px; }
+}

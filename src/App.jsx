@@ -1,15 +1,22 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 import Desktop from './components/Desktop.jsx'
 import Dock from './components/Dock.jsx'
 import MacWindow from './components/MacWindow.jsx'
 import ProjectsPane from './components/ProjectsPane.jsx'
 import useWindowManager from './hooks/useWindowManager.js'
+import BugHunt from './components/bughunt/BugHunt'
+import BioCard from './components/BioCard.jsx'
 
 const App = () => {
   const wm = useWindowManager()
+  useEffect(() => {
+    const open = () => wm.openWindow('bughunt')
+    window.addEventListener('dock:open-bughunt', open)
+    return () => window.removeEventListener('dock:open-bughunt', open)
+  }, [wm])
   const handleOpenResume = () => wm.openWindow('resume')
   const handleOpenContact = () => wm.openWindow('contact')
-  const handleOpenBio = () => wm.openWindow('bio')
+  const handleOpenBio = () => wm.openWindowCentered('bio')
   const handleOpenProjects = () => wm.openWindow('projects')
 
   return (
@@ -17,7 +24,13 @@ const App = () => {
       <Desktop onOpenProjects={handleOpenProjects} onOpenResume={handleOpenResume} logoShifted={wm.anyOpen} />
 
       {wm.isOpen('resume') && (
-        <MacWindow title="Resume.pdf" onClose={() => wm.closeWindow('resume')} initialOffset={wm.getOffset('resume')}>
+        <MacWindow
+          title="Resume.pdf"
+          onClose={() => wm.closeWindow('resume')}
+          initialOffset={wm.getOffset('resume')}
+          zIndex={wm.getZ('resume')}
+          onFocus={() => wm.focusWindow('resume')}
+        >
           <div style={{ padding: 16, lineHeight: 1.6 }}>
             Resume placeholder. Content goes here.
           </div>
@@ -25,7 +38,13 @@ const App = () => {
       )}
 
       {wm.isOpen('contact') && (
-        <MacWindow title="Contact" onClose={() => wm.closeWindow('contact')} initialOffset={wm.getOffset('contact')}>
+        <MacWindow
+          title="Contact"
+          onClose={() => wm.closeWindow('contact')}
+          initialOffset={wm.getOffset('contact')}
+          zIndex={wm.getZ('contact')}
+          onFocus={() => wm.focusWindow('contact')}
+        >
           <div style={{ padding: 16, lineHeight: 1.8 }}>
             <div style={{ marginBottom: 8 }}>Get in touch:</div>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 8 }}>
@@ -44,35 +63,42 @@ const App = () => {
       )}
 
       {wm.isOpen('bio') && (
-        <MacWindow title="Bio" onClose={() => wm.closeWindow('bio')} initialOffset={wm.getOffset('bio')}>
-          <div style={{ padding: 16, lineHeight: 1.7, display: 'grid', gap: 12 }}>
-            <p>
-              I’m a front-end engineer with 9+ years of experience building modern, performant user interfaces.
-              I currently serve as an AVP Front-End Developer at AllianceBernstein, supporting enterprise marketing
-              initiatives. I maintain and enhance components for the public site and internal campaign tools, primarily
-              using React and Adobe Experience Manager.
-            </p>
-            <p>
-              Outside of my core role, I design and build data-focused tools and prototypes—dashboards, analytics
-              utilities, and workflow helpers. I occasionally explore language models and automation when they add clear
-              value to usability and insight.
-            </p>
-            <p>
-              I care about intuitive, reliable software that improves day-to-day work. Lately I’ve been exploring
-              real-time data, sentiment signals, and conversational interfaces to turn information into actionable
-              decisions.
-            </p>
-          </div>
+        <MacWindow
+          title="Bio"
+          onClose={() => wm.closeWindow('bio')}
+          initialOffset={{ x: 0, y: 0 }}
+          zIndex={wm.getZ('bio')}
+          onFocus={() => wm.focusWindow('bio')}
+        >
+          <BioCard />
         </MacWindow>
       )}
 
       {wm.isOpen('projects') && (
-        <MacWindow title="Projects" onClose={() => wm.closeWindow('projects')} initialOffset={wm.getOffset('projects')}>
+        <MacWindow
+          title="Projects"
+          onClose={() => wm.closeWindow('projects')}
+          initialOffset={wm.getOffset('projects')}
+          zIndex={wm.getZ('projects')}
+          onFocus={() => wm.focusWindow('projects')}
+        >
           <ProjectsPane
             items={[
               { name: 'Natural Language Dashboard', imageKey: 'nl_dashboard' },
             ]}
           />
+        </MacWindow>
+      )}
+
+      {wm.isOpen('bughunt') && (
+        <MacWindow
+          title="Bug Hunt"
+          onClose={() => wm.closeWindow('bughunt')}
+          initialOffset={wm.getOffset('bughunt')}
+          zIndex={wm.getZ('bughunt')}
+          onFocus={() => wm.focusWindow('bughunt')}
+        >
+          <BugHunt />
         </MacWindow>
       )}
 
