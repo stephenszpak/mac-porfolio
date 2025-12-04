@@ -36,6 +36,7 @@ jobs:
       - name: Build
         env:
           GITHUB_PAGES: true
+          VITE_BASE: '/'
         run: npm run build
 
       - name: Inspect build output
