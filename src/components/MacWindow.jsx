@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import styles from './MacWindow.module.css'
 import useDraggable from '../hooks/useDraggable.js'
 
-const MacWindow = ({ title = 'Untitled', children, onClose, initialOffset, zIndex = 0, onFocus }) => {
+const MacWindow = ({ title = 'Untitled', children, onClose, initialOffset, zIndex = 0, onFocus, wide = false }) => {
   const { offset, isDragging, onPointerDown } = useDraggable(initialOffset)
   const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 767px)').matches)
   useEffect(() => {
@@ -24,7 +24,7 @@ const MacWindow = ({ title = 'Untitled', children, onClose, initialOffset, zInde
     : { transform }
 
   return (
-    <div className={styles.window} style={{ ...style, zIndex }} onMouseDown={onFocus}>
+    <div className={`${styles.window} ${wide ? styles.wide : ''}`} style={{ ...style, zIndex }} onMouseDown={onFocus}>
       <div className={styles.titleBar} onPointerDown={handlePointerDown} data-dragging={isDragging}>
         <div className={styles.traffic}>
           <button className={`${styles.dot} ${styles.red}`} aria-label="Close" onClick={onClose} />

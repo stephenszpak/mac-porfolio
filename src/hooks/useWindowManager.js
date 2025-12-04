@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 
-const KEYS = ['resume', 'contact', 'bio', 'projects', 'bughunt']
+const KEYS = ['resume', 'contact', 'bio', 'projects']
 
 const useWindowManager = () => {
   const [state, setState] = useState(() => ({
@@ -8,7 +8,6 @@ const useWindowManager = () => {
     contact: { open: false, pos: null, z: 0 },
     bio: { open: false, pos: null, z: 0 },
     projects: { open: false, pos: null, z: 0 },
-    bughunt: { open: false, pos: null, z: 0 },
     nextZ: 100,
   }))
 

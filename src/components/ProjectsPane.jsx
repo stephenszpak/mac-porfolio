@@ -46,6 +46,75 @@ const ProjectsPane = ({ items }) => {
         </div>
       )
     }
+    if (selected.name === 'Portfolio Site') {
+      return (
+        <div className={pane.detailBody}>
+          <section>
+            <h3>About This Project</h3>
+            <p>
+              A Mac-inspired portfolio site that mimics the look and feel of a desktop environment. It features a
+              wallpapered desktop, a glassmorphic dock, and draggable macOS-style windows. Built for fast load times, responsive behavior, and a clean, component-driven architecture.
+            </p>
+          </section>
+          <section>
+            <h3>Technologies Used</h3>
+            <ul>
+              <li>React</li>
+              <li>Vite</li>
+            </ul>
+          </section>
+          <section>
+            <a
+              href="https://github.com/stephenszpak/mac-porfolio"
+              target="_blank"
+              rel="noreferrer noopener"
+              className={pane.link}
+            >
+              Source code link
+            </a>
+          </section>
+        </div>
+      )
+    }
+    if (selected.name === 'MMO Server') {
+      return (
+        <div className={pane.detailBody}>
+          <section>
+            <h3>About This Project</h3>
+            <p>
+              A Phoenix-based multiplayer server experiment demonstrating scalable game architecture. Features include
+              distributed player management with Horde, real-time zone-based gameplay, NPC AI systems with patrolling and
+              combat behaviors, quest tracking and completion, skill systems with JSON metadata, loot dropping and pickup
+              mechanics, world events and boss spawning, player progression (XP/leveling), and comprehensive combat engine
+              with debuff systems. The server uses Phoenix Channels for real-time communication, GenServer processes for
+              players and NPCs, and PubSub for broadcasting world events. Includes clustering support for multi-node
+              deployment and comprehensive test coverage for all game mechanics.
+            </p>
+          </section>
+          <section>
+            <h3>Technologies Used</h3>
+            <ul>
+              <li>Phoenix</li>
+              <li>Elixir</li>
+              <li>Horde</li>
+              <li>PostgreSQL</li>
+              <li>Phoenix PubSub</li>
+              <li>GenServer</li>
+            </ul>
+          </section>
+          <section>
+            <a
+              href="https://github.com/stephenszpak/mmo-server"
+              target="_blank"
+              rel="noreferrer noopener"
+              className={pane.link}
+            >
+              Source code link
+            </a>
+          </section>
+        </div>
+      )
+    }
     return <div className={pane.detailBody}>Details coming soon.</div>
   }, [selected])
 
