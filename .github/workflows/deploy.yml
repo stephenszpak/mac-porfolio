@@ -21,6 +21,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -34,6 +37,13 @@ jobs:
         run: |
           REPO_NAME=$(basename $GITHUB_REPOSITORY)
           npm run build -- --base=/${REPO_NAME}/
+
+      - name: Inspect build output
+        run: |
+          echo "Built files in dist:"
+          ls -la dist
+          echo "First 40 lines of dist/index.html:"
+          sed -n '1,40p' dist/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -50,4 +60,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
